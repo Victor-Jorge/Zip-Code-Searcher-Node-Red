@@ -135,3 +135,49 @@ Here is the HTML that generates a page with an input field for entering the zip 
 3. HTTP response
 sends the HTML to the browser
 
+--- 
+## Route Address-by-zip
+
+<img width="1067" height="320" alt="Image" src="https://github.com/user-attachments/assets/866e35f5-9ea1-4c2b-b9b4-79e096ccea45" />
+
+### get/Address-by-zip
+
+Receives the ZIP code entered by the user via query string:
+
+### Monta URL (function)
+This node takes the ZIP code received and builds the query API URL.
+Probably something like this:
+
+### requisição HTTP
+Uses the built URL and calls the external API.
+
+It generates a msg.payload with the API return (JSON).
+
+### Retorno HTML 
+
+This node takes the received JSON and transforms it into HTML to send to the browser.
+
+### HTTP Response
+Sends this HTML page to the browser.
+
+Result: the user sees the ZIP code data on the screen.
+
+## Auxiliary nodes
+<img width="448" height="183" alt="Image" src="https://github.com/user-attachments/assets/1ffe5421-06b8-41e4-a5f8-127fa3531724" />
+
+
+They receive the same return from the HTTP request:
+
+1. Generate URL (function)
+
+&nbsp;&nbsp;&nbsp;&nbsp;Used only for debugging, displaying the URL used (msg.url).
+
+
+2. Debug numCep (function)
+
+&nbsp;&nbsp;&nbsp;&nbsp;Also for debugging, probably shows the ZIP code received (msg.numCep).
+
+
+3. Request return (debug)
+
+&nbsp;&nbsp;&nbsp;&nbsp;Shows the JSON received from the API in the debug panel
