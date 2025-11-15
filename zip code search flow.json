@@ -1,0 +1,244 @@
+[
+    {
+        "id": "8b70504d14e53e3e",
+        "type": "tab",
+        "label": "CEP",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "98c46bd56bfcaa39",
+        "type": "http in",
+        "z": "8b70504d14e53e3e",
+        "name": "",
+        "url": "/zip-code-search",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 380,
+        "y": 220,
+        "wires": [
+            [
+                "eb1ce10eeb7e7723"
+            ]
+        ]
+    },
+    {
+        "id": "eb1ce10eeb7e7723",
+        "type": "template",
+        "z": "8b70504d14e53e3e",
+        "name": "Formulario cep",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n  <head>\n    <title>Consultar CEP</title>\n    <style>\n      body { \n      font-family: Arial;\n      background: #2f9fec;\n      padding: 0px;\n      display: flex;\n      align-items: center;\n      justify-content: center; \n      }\n      form {\n        background: white;\n        padding: 20px;\n        border-radius: 10px;\n        box-shadow: 0 0 10px rgba(0,0,0,0.1);\n        max-width: 400px;\n        margin: auto;\n      }\n      input[type=\"text\"] {\n        padding: 10px;\n        width: 90%;\n        margin-bottom: 10px;\n      }\n      input[type=\"submit\"] {\n        padding: 10px 20px;\n      }\n    </style>\n  </head>\n  <body>\n    {{!-- Direciona para url /consulta1  --}}\n    <div class = cardcep> \n      <form action=\"/address-by-zip\" method=\"get\">\n        <label>Digite o CEP:</label><br>\n        <input type=\"text\" name=\"formcep\" id=\"cep\" maxlength=\"9\" placeholder=\"00000-000\">\n        <input type=\"submit\" value=\"Buscar\">\n      </form>\n    </div>\n    <p>{{numCep}}</p>\n      <script>\n      const cepInput = document.getElementById('cep');\n\n      cepInput.addEventListener('input', function () {\n        let value = this.value.replace(/\\D/g, ''); // Remove tudo que não for dígito\n        if (value.length > 5) {\n          value = value.slice(0, 5) + '-' + value.slice(5, 8);\n        }\n        this.value = value;\n      });\n    </script>\n  </body>\n</html>",
+        "output": "str",
+        "x": 580,
+        "y": 220,
+        "wires": [
+            [
+                "b04033134abce54c"
+            ]
+        ]
+    },
+    {
+        "id": "b04033134abce54c",
+        "type": "http response",
+        "z": "8b70504d14e53e3e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 770,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "efe328796a4e34ec",
+        "type": "http request",
+        "z": "8b70504d14e53e3e",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 740,
+        "y": 340,
+        "wires": [
+            [
+                "0ed6178110b53b76",
+                "fd85a3cf530ca3ca"
+            ]
+        ]
+    },
+    {
+        "id": "36943eb5bf99ccc7",
+        "type": "function",
+        "z": "8b70504d14e53e3e",
+        "name": "Monta URL",
+        "func": "msg.numCep = msg.req.query.formcep;  // Exemplo: \"32450000\"\nmsg.url = \"https://brasilapi.com.br/api/cep/v2/\" + msg.numCep;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 340,
+        "wires": [
+            [
+                "efe328796a4e34ec",
+                "547d4b623acf5835",
+                "6df18b3e3ec72c20"
+            ]
+        ]
+    },
+    {
+        "id": "c98ddfb4aa43ea2c",
+        "type": "debug",
+        "z": "8b70504d14e53e3e",
+        "name": "msg.url",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "url",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "da47ccc76dd1252c",
+        "type": "debug",
+        "z": "8b70504d14e53e3e",
+        "name": "msg.numCep",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "numCep",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1130,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "fd85a3cf530ca3ca",
+        "type": "template",
+        "z": "8b70504d14e53e3e",
+        "name": "Retorno HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n  <head>\n    <title>Resultado do CEP</title>\n    <style>\n      body {\n        font-family: Arial;\n        background: #2f9fec;\n        padding: 0px;\n        display: flex;\n        align-items: center;\n        justify-content: center; \n      }\n      .father-card{\n        display:flex;\n        align-items:center;\n        justify-content: center;\n      }\n      .card {\n        background: white;\n        padding: 20px;\n        border-radius: 10px;\n        box-shadow: 0 0 10px rgba(0,0,0,0.1);\n        max-width: 400px;\n        margin: auto;\n      }\n      .botao_consultar_outro_cep{\n        background: white;\n        padding: 20px;\n        border-radius: 10px;\n        box-shadow: 0 0 10px rgba(0,0,0,0.1);\n        max-width: 400px;\n        margin: auto;\n        text-align: center;\n      }\n      a{\n        text-decoration:none;\n        color: #333\n      }\n        .botao_consultar_outro_cep:hover {\n        background-color: #71bdf2;\n        color: black;\n      }\n      \n    </style>\n\n  </head>\n\n  <body>\n\n    <div class = \"father-card\">\n      <div class=\"card\">\n\n        <h2>Informações do CEP: {{payload.cep}}</h2>\n        <p><strong>Estado:</strong> {{payload.state}}</p>\n        <p><strong>Cidade:</strong> {{payload.city}}</p>\n        <p><strong>Bairro:</strong> {{payload.neighborhood}}</p>\n        <p><strong>Rua:</strong> {{payload.street}}</p>\n        <p><strong>Latitude:</strong> {{payload.location.coordinates.latitude}}</p>\n        <p><strong>Longitude:</strong> {{payload.location.coordinates.longitude}}</p>\n        \n        <div class = \"botao_consultar_outro_cep\">\n          <a href=\"/zip-code-search\">Consultar outro CEP</a>\n        </div>\n      </div>\n    </div>\n\n  </body>\n\n</html>",
+        "output": "str",
+        "x": 980,
+        "y": 340,
+        "wires": [
+            [
+                "f7ef84918af8ee1a"
+            ]
+        ]
+    },
+    {
+        "id": "db067f3aa6684561",
+        "type": "http in",
+        "z": "8b70504d14e53e3e",
+        "name": "",
+        "url": "/Address-by-zip",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 370,
+        "y": 340,
+        "wires": [
+            [
+                "36943eb5bf99ccc7"
+            ]
+        ]
+    },
+    {
+        "id": "f7ef84918af8ee1a",
+        "type": "http response",
+        "z": "8b70504d14e53e3e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1150,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "6df18b3e3ec72c20",
+        "type": "function",
+        "z": "8b70504d14e53e3e",
+        "name": "Debug numCep",
+        "func": "let cepInserido = msg.numCep;\nmsg.numCep = \"numCep: \" + cepInserido;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 560,
+        "wires": [
+            [
+                "da47ccc76dd1252c"
+            ]
+        ]
+    },
+    {
+        "id": "547d4b623acf5835",
+        "type": "function",
+        "z": "8b70504d14e53e3e",
+        "name": "Gera URL",
+        "func": "let urlGerada = msg.url;\nmsg.numCep = \"numCep: \" + urlGerada;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 520,
+        "wires": [
+            [
+                "c98ddfb4aa43ea2c"
+            ]
+        ]
+    },
+    {
+        "id": "0ed6178110b53b76",
+        "type": "debug",
+        "z": "8b70504d14e53e3e",
+        "name": "retorno da requisição",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 460,
+        "wires": []
+    }
+]
