@@ -1,18 +1,31 @@
 # Zip-Code-Searcher-Node-Red [![platform](https://img.shields.io/badge/plataform-Node--RED-red)](https://nodered.org)
 This project provides a ZIP code lookup system: a form where the user enters a ZIP code, a route that builds and sends an HTTP request to an external API, and an HTML response that displays the returned address data.
 
-## 🚀 Overview
+## Table of contents
+- [Overview](#Overview)
+- [Using Input Field](#Using-Input-Field)
+- [Using Route Parameter](#Using-Route-Parameter)
+- [Installation](#installation)
+- [Usage](#Usage)
+- [Flow Structure](#Flow-Structure)
+- [Route zip-code-search](#Route-zip-code-search)
+- [get/Address-by-zip](#get/Address-by-zip)
+
+
+## Overview
 This project demonstrates two different ways of sending a code to the system:
 
-### 🔹 1. Using Input Field
+### 1. Using Input Field
 The user enters the code manually in a text box.
+
 <p align="center">
   <img  src="/assets/zip code seacher.gif" alt="A gif showing the works of the Api" width="40%">
 </p>
 
 ---
-### 🔹 2. Using Route Parameter
+### 2. Using Route Parameter
 The code is passed directly in the URL.
+
 <p align="center">  
   <img  src="/assets/zip code seacher rota.gif" alt="A gif showing the works of the Api" width="60%">
 </p>
@@ -65,6 +78,7 @@ This flow has two HTTP routes:
 
 
 ### Route zip-code-search
+
 <img width="695" height="61" alt="Image" src="https://github.com/user-attachments/assets/caa7dc0c-8929-4717-85fa-cb85d66a58d3" /> 
 
 1. get/zip-code-search
