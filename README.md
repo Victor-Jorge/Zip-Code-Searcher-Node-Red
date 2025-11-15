@@ -4,13 +4,14 @@ Node-RED flow that provides a ZIP code lookup system: a form where the user ente
 ## 🚀 Overview
 This project demonstrates two different ways of sending a code to the system:
 
-## 🔹 1. Using Input Field
+### 🔹 1. Using Input Field
 The user enters the code manually in a text box.
 <p align="center">
   <img  src="/assets/zip code seacher.gif" alt="A gif showing the works of the Api" width="40%">
 </p>
 
-## 🔹 2. Using Route Parameter
+---
+### 🔹 2. Using Route Parameter
 The code is passed directly in the URL.
 <p align="center">  
   <img  src="/assets/zip code seacher rota.gif" alt="A gif showing the works of the Api" width="60%">
