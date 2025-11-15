@@ -7,9 +7,9 @@ This project provides a ZIP code lookup system: a form where the user enters a Z
 - [Using Route Parameter](#Using-Route-Parameter)
 - [Installation](#installation)
 - [Usage](#Usage)
-- [Flow Structure](#Flow-Structure)
+- [Flow Structure](#FLOW-STRUCUTURE)
 - [Route zip-code-search](#Route-zip-code-search)
-- [get/Address-by-zip](#get/Address-by-zip)
+- [Address-by-zip](#Address-by-zip)
 
 
 ## Overview
@@ -154,7 +154,7 @@ sends the HTML to the browser
 
 <img width="1067" height="320" alt="Image" src="https://github.com/user-attachments/assets/866e35f5-9ea1-4c2b-b9b4-79e096ccea45" />
 
-### get/Address-by-zip
+### Address-by-zip
 
 Receives the ZIP code entered by the user via query string:
 
