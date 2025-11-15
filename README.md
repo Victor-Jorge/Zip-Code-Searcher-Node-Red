@@ -3,7 +3,7 @@ This project provides a ZIP code lookup system: a form where the user enters a Z
 
 ## Table of contents
 - [Overview](#Overview)
-- [Using Input Field](#Using--Input--Field)
+- [Using Input Field](#Using Input Field)
 - [Using Route Parameter](#Using-Route-Parameter)
 - [Installation](#installation)
 - [Usage](#Usage)
@@ -15,7 +15,7 @@ This project provides a ZIP code lookup system: a form where the user enters a Z
 ## Overview
 This project demonstrates two different ways of sending a code to the system:
 
-### 1. Using Input Field
+### Using Input Field
 The user enters the code manually in a text box.
 
 <p align="center">
@@ -23,7 +23,7 @@ The user enters the code manually in a text box.
 </p>
 
 ---
-### 2. Using Route Parameter
+### Using Route Parameter
 The code is passed directly in the URL.
 
 <p align="center">  
