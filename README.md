@@ -3,7 +3,7 @@ Node-RED flow that provides a ZIP code lookup system: a form where the user ente
 
 <p align="center">
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/778b4337-4997-4a63-be7e-7c042c549215" width="40%">
+  <img alt="Gif showing the work of API" src="https://github.com/user-attachments/assets/778b4337-4997-4a63-be7e-7c042c549215" width="40%">
 </p>
 </p>
 
