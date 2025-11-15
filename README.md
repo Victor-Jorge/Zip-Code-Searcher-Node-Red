@@ -3,7 +3,7 @@ This project provides a ZIP code lookup system: a form where the user enters a Z
 
 ## Table of contents
 - [Overview](#Overview)
-- [Using Input Field](#Using-Input-Field)
+- [Using Input Field](#Using--Input--Field)
 - [Using Route Parameter](#Using-Route-Parameter)
 - [Installation](#installation)
 - [Usage](#Usage)
