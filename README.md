@@ -122,7 +122,7 @@ Here is the HTML that generates a page with an input field for entering the zip 
     </style>
   </head>
   <body>
-    {{!-- Direciona para url /consulta1  --}}
+    {{!-- Direciona para url/Address-by-zip  --}}
     <div class = cardcep> 
       <form action="/address-by-zip" method="get">
         <label>Digite o CEP:</label><br>
